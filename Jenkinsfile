@@ -1,5 +1,5 @@
 @Library('roboshop') _
 
 env.component = "shipping"
-env.appType = "nodejs"
+env.appType = "java"
 cipipeline()
