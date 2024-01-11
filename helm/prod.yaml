@@ -1,0 +1,32 @@
+appName: shipping
+appVersion: 2.0.1
+replicas: 2
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+initContainers:
+  enabled: true
+  imageVersion: 2.0.2
+  INPUT: "DB_HOST,prod.roboshop.rds.endpoint CART_ENDPOINT,prod.roboshop.shipping.CART_ENDPOINT"
+
+job:
+  enabled: true
+  INPUT: "RDS_ENDPOINT,prod.roboshop.rds.endpoint RDS_USER,prod.roboshop.rds.master_username RDS_PASS,prod.roboshop.rds.master_password"
+  imageVersion: 1.0.4
+
+#resources:
+#  requests:
+#    memory: "3000Mi"
+#    cpu: "900m"
+#  limits:
+#    memory: "3500Mi"
+#    cpu: "1100m"
+#
+#autoscaling:
+#  enabled: true
+#  minReplicas: 2
+#  maxReplicas: 10
+#  targetCPUUtilizationPercentage: 80
+#  targetMemoryUtilizationPercentage: 80
